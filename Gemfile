@@ -39,26 +39,26 @@ end
 eval data if data
 
 # Database driver
-require 'erb'
-require 'yaml'
-filename = File.join(File.dirname(__FILE__), 'config', 'database.yml')
-raise "Can't find database configuration at: #{filename}" unless File.exist?(filename)
-databases = YAML.load(ERB.new(File.read(filename)).result)
-railsenv = ENV['RAILS_ENV'] || 'development'
-raise "Can't find database configuration for environment '#{railsenv}' in: #{filename}" unless databases[railsenv]
-adapter = databases[railsenv]['adapter']
-raise "Can't find database adapter for environment '#{railsenv}' in: #{filename}" unless databases[railsenv]['adapter']
-case adapter
-when 'pg', 'postgresql'
+#require 'erb'
+#require 'yaml'
+#filename = File.join(File.dirname(__FILE__), 'config', 'database.yml')
+#raise "Can't find database configuration at: #{filename}" unless File.exist?(filename)
+#databases = YAML.load(ERB.new(File.read(filename)).result)
+#railsenv = ENV['RAILS_ENV'] || 'development'
+#raise "Can't find database configuration for environment '#{railsenv}' in: #{filename}" unless databases[railsenv]
+#adapter = databases[railsenv]['adapter']
+#raise "Can't find database adapter for environment '#{railsenv}' in: #{filename}" unless databases[railsenv]['adapter']
+#case adapter
+#when 'pg', 'postgresql'
   gem 'pg'
-when 'mysql2'
-  gem 'mysql2', '~> 0.3.11'
-when 'jdbcsqlite3'
-  gem 'jdbc-sqlite3'
-  gem 'activerecord-jdbcsqlite3-adapter'
-else
-  gem adapter
-end
+#when 'mysql2'
+#  gem 'mysql2', '~> 0.3.11'
+#when 'jdbcsqlite3'
+#  gem 'jdbc-sqlite3'
+#  gem 'activerecord-jdbcsqlite3-adapter'
+#else
+#  gem adapter
+#end
 
 # Run-time dependencies
 gem 'rails', '3.2.13'
